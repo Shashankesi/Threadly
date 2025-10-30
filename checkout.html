@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Threadly – Checkout</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <script defer src="js/script.js"></script>
+  <script defer src="js/checkout-page-script.js"></script>
+
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <img src="image/threadly.png" alt="Threadly Logo" />
+    </a>
+
+    <div class="nav-center">
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="men.html">Men</a>
+        <a href="women.html">Women</a>
+        <a href="accessories.html">Accessories</a>
+      </nav>
+
+      <form class="search-bar">
+        <input type="text" placeholder="Search..." />
+        <button type="submit"><i class="ri-search-line"></i></button>
+      </form>
+
+      <div class="nav-icons">
+        <a href="cart.html" class="cart-icon">🛒 <span id="cartItemCount">0</span></a>
+      </div>
+    </div>
+
+    <div class="user-info" id="userInfo"></div>
+
+    <div class="modal" id="authModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Welcome to Threadly</h2>
+        <p>Please choose an option:</p>
+        <div class="auth-buttons">
+          <a href="signin.html"><button>Sign In</button></a>
+          <a href="signup.html"><button>Sign Up</button></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="page-header">
+      <h1>Checkout</h1>
+    </section>
+
+    <section class="checkout-container">
+      <div class="checkout-steps-nav">
+        <div class="step-indicator active" id="stepNav1">1. Shipping</div>
+        <div class="step-indicator" id="stepNav2">2. Payment</div>
+        <div class="step-indicator" id="stepNav3">3. Review & Pay</div>
+      </div>
+
+      <form id="shippingForm" class="checkout-step active">
+        <h2>Shipping Information</h2>
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" required placeholder="Your Name..." />
+        </div>
+        <div class="form-group">
+          <label for="address1">Address Line 1:</label>
+          <input type="text" id="address1" name="address1" required placeholder="House No., Street Name" />
+        </div>
+        <div class="form-group">
+          <label for="address2">Address Line 2 (Optional):</label>
+          <input type="text" id="address2" name="address2" placeholder="Apartment, Suite, etc." />
+        </div>
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required placeholder="Your City" />
+        </div>
+        <div class="form-group">
+          <label for="state">State/Province:</label>
+          <input type="text" id="state" name="state" required placeholder="Your State" />
+        </div>
+        <div class="form-group">
+          <label for="zip">Zip/Postal Code:</label>
+          <input type="text" id="zip" name="zip" required placeholder="123456" />
+        </div>
+        <div class="form-group">
+          <label for="country">Country:</label>
+          <input type="text" id="country" name="country" required value="India" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required placeholder="9876543210" />
+        </div>
+        <button type="submit" class="next-step-btn">Continue to Payment</button>
+      </form>
+
+      <form id="paymentForm" class="checkout-step">
+        <h2>Payment Information</h2>
+        <div class="form-group">
+          <label for="paymentMethod">Choose Payment Method:</label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="">-- Select --</option>
+            <option value="cod">Cash on Delivery (COD)</option>
+            <option value="card">Credit/Debit Card (Simulated)</option>
+            <option value="upi">UPI (Simulated)</option>
+          </select>
+        </div>
+
+        <div id="cardDetails" class="payment-method-details" style="display: none;">
+          <div class="form-group">
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" maxlength="16" pattern="\d{16}" title="16-digit card number" />
+          </div>
+          <div class="form-group">
+            <label for="cardName">Name on Card:</label>
+            <input type="text" id="cardName" name="cardName" placeholder="Full Name" />
+          </div>
+          <div class="form-group row-group">
+            <div class="col">
+              <label for="expiryDate">Expiry Date:</label>
+              <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" pattern="\d{2}/\d{2}" title="MM/YY" />
+            </div>
+            <div class="col">
+              <label for="cvv">CVV:</label>
+              <input type="text" id="cvv" name="cvv" placeholder="XXX" maxlength="3" pattern="\d{3}" title="3-digit CVV" />
+            </div>
+          </div>
+        </div>
+
+        <div id="upiDetails" class="payment-method-details" style="display: none;">
+          <div class="form-group">
+            <label for="upiId">UPI ID:</label>
+            <input type="text" id="upiId" name="upiId" placeholder="yourname@bankupi" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="prev-step-btn">Back to Shipping</button>
+          <button type="submit" class="next-step-btn">Continue to Review</button>
+        </div>
+      </form>
+
+      <div id="reviewStep" class="checkout-step">
+        <h2>Order Review</h2>
+        <div class="order-summary-details">
+          <h3>Items in Cart:</h3>
+          <div id="reviewCartItems" class="review-items-list">
+            </div>
+
+          <h3>Shipping Address:</h3>
+          <p id="reviewShippingAddress"></p>
+
+          <h3>Payment Method:</h3>
+          <p id="reviewPaymentMethod"></p>
+
+          <div class="coupon-section">
+            <label for="couponCode">Have a coupon?</label>
+            <div class="coupon-input-group">
+              <input type="text" id="couponCode" placeholder="Enter coupon code" />
+              <button id="applyCouponBtn">Apply</button>
+            </div>
+            <p id="couponMessage"></p>
+          </div>
+
+          <div class="final-price-summary">
+            <div class="summary-line">
+              <span>Cart Subtotal:</span>
+              <span id="reviewSubtotal">₹0.00</span>
+            </div>
+            <div class="summary-line">
+              <span>Coupon Discount:</span>
+              <span id="reviewDiscount">₹0.00</span>
+            </div>
+            <div class="summary-line">
+              <span>Shipping:</span>
+              <span>Free</span>
+            </div>
+            <div class="summary-line total-line">
+              <span>Total Payable:</span>
+              <span id="reviewTotal">₹0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="prev-step-btn">Back to Payment</button>
+          <button id="placeOrderBtn" class="next-step-btn">Place Order</button>
+        </div>
+      </div>
+
+      <div id="confirmationStep" class="checkout-step hidden">
+        <div class="confirmation-content">
+          <i class="ri-checkbox-circle-fill confirmation-icon"></i>
+          <h2>Order Placed Successfully!</h2>
+          <p>Your order <strong id="orderNumber">#THRDLY12345</strong> has been placed.</p>
+          <p>You will receive an email confirmation shortly.</p>
+          
+          <div class="delivery-animation-container">
+            <div class="road">
+              <div class="center-line"></div>
+            </div>
+            <div class="bus-icon">🚌</div> <p class="delivery-status-text">Your order is on the way!</p>
+          </div>
+
+          <div class="confirmation-details">
+            <h3>Delivery to:</h3>
+            <p id="confirmAddress"></p>
+            <h3>Total:</h3>
+            <p id="confirmTotal"></p>
+          </div>
+          <button class="shop-btn" onclick="window.location.href='index.html'">Continue Shopping</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <div id="popup"></div>
+
+  <footer class="ck-footer">
+    <div class="footer-columns">
+      <div class="column">
+        <h3>Promotions</h3>
+        <ul>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Stores</a></li>
+          <li><a href="#">Store Directory</a></li>
+          <li><a href="#">Loyalty Program</a></li>
+          <li><a href="#">Klarna</a></li>
+          <li><a href="#">Cash App Afterpay</a></li>
+          <li><a href="#">First Responder Discount</a></li>
+        </ul>
+      </div>
+      <div class="column">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="#">Customer Service</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="column">
+        <h3>About</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Privacy Commitment</a></li>
+          <li><a href="#">Sustainability</a></li>
+        </ul>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#">Our Jeans</a></li>
+          <li><a href="#">#MYTHREADLY</a></li>
+        </ul>
+      </div>
+      <div class="column subscribe">
+        <h3>Sign Up & Save 10%</h3>
+        <p>Subscribe for updates, promotions and new drops.</p>
+        <form class="subscribe-form">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit">Get 10% Off</button>
+        </form>
+        <p class="mobile-signup">
+          Text JOIN to 225846 for free shipping. <br />
+          <small><a href="#">Details</a></small>
+        </p>
+        <div class="social-icons">
+          <a href="#"><i class="ri-instagram-line"></i></a>
+          <a href="#"><i class="ri-tiktok-line"></i></a>
+          <a href="#"><i class="ri-facebook-line"></i></a>
+          <a href="#"><a href="#"><i class="ri-twitter-x-line"></i></a></a>
+          <a href="#"><i class="ri-pinterest-line"></i></a>
+          <a href="#"><i class="ri-youtube-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © 2025 Threadly. All rights reserved. | <a href="#">Privacy Policy</a> |
+        <a href="#">Terms</a> | <a href="#">Do Not Sell My Info</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Men - Threadly</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+ <!-- Navbar -->
+  <header class="navbar">
+    <a href="#" class="logo">
+      <img src="image/threadly.png" alt="Threadly Logo" />
+    </a>
+
+    <div class="nav-center">
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <!-- <a href="#">Men</a> -->
+        <a href="#">Women</a>
+        <a href="#">Accessories</a>
+      </nav>
+
+      <form class="search-bar">
+        <input type="text" placeholder="Search..." />
+        <button type="submit"><i class="ri-search-line"></i></button>
+      </form>
+
+      <div class="nav-icons">
+        <a href="#" class="cart-icon">🛒</a>
+      </div>
+    </div>
+       <div class="user-section" onclick="toggleUserDropdown()">
+  <img src="images/user.png" alt="User Icon" class="user-icon">
+  <span class="user-name">Hello, User</span>
+</div>
+
+<div class="user-dropdown" id="userDropdown">
+  <a href="dashboard.html">Dashboard</a>
+  <a href="orders.html">My Orders</a>
+  <a href="wishlist.html">Wishlist</a>
+  <a href="#" onclick="logout()">Logout</a>
+</div>
+
+
+  </header>
+
+
+  <!-- Products Section -->
+  <section class="products">
+    <h2>Men's Collection</h2>
+    <div id="popup">Item added to cart!</div>
+    <div class="product-grid" id="productGrid"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Threadly. All rights reserved.</p>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/men.js"></script> <!-- Your new logic for men's page -->
+</body>
+</html>

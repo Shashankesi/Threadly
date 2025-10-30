@@ -1,0 +1,1675 @@
+/* style.css */
+
+/* ========= GLOBAL STYLES ========= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #fff;
+  color: #111;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ========= NAVBAR ========= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 2rem;
+}
+
+/* NAVBAR LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  height: 80px; /* Bigger height */
+}
+
+.logo img {
+  height: 100%;
+  max-height: 80px; /* Match logo container */
+  width: auto;
+  max-width: 260px;  /* Increase width as needed */
+  transition: transform 0.3s ease;
+  object-fit: contain;
+}
+
+.logo:hover img {
+  transform: scale(1.08);
+}
+
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: 2rem; /* Adjusted from 1.5rem for more space */
+}
+
+.nav-links a {
+  font-weight: 500;
+  color: #111;
+  position: relative;
+  transition: color 0.3s ease; /* Added transition for color */
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #111;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Style for the active navigation link (Men's page) */
+.nav-links .active-nav {
+    font-weight: 700; /* Make it bolder */
+    color: #000; /* Ensure it's black */
+}
+
+.nav-links .active-nav::after {
+    width: 100%; /* Keep the underline active for the current page */
+    background: #000;
+}
+
+
+/* SEARCH BAR */
+.search-bar {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  height: 38px;
+}
+
+.search-bar input {
+  padding: 0 1rem;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  width: 180px;
+}
+
+.search-bar button {
+  padding: 0 1rem;
+  background: #111;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar button:hover {
+  background: #333;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* USER INFO */
+.user-info {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  margin-left: 1rem; /* Added margin for separation */
+}
+
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.user-menu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  display: none;
+  list-style: none;
+  min-width: 150px;
+  z-index: 10;
+}
+
+.user-info:hover .user-menu {
+  display: block;
+}
+
+.user-menu li {
+  margin: 10px 0;
+}
+
+.user-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Auth Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto; /* Changed from 15% auto to auto for flex centering */
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative; /* For positioning the close button */
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-content input {
+  padding: 10px;
+  width: 80%;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.auth-buttons button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Added transition */
+}
+
+.auth-buttons button:hover {
+  background-color: #333;
+}
+
+.close {
+  position: absolute;
+  right: 15px; /* Adjusted position */
+  top: 10px; /* Adjusted position */
+  font-size: 28px; /* Slightly larger for easier click */
+  cursor: pointer;
+  color: #888; /* Added color */
+}
+.close:hover {
+    color: #333;
+}
+
+/* ========= MAIN CONTENT ADJUSTMENT FOR FIXED HEADER ========= */
+/* This is crucial for content not being hidden under the navbar */
+.main-content {
+  padding-top: 100px; /* Adjust based on your actual navbar height (80px logo + padding) */
+  min-height: calc(100vh - 180px); /* Adjust to push footer down; 180px is approx footer height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========= HERO SLIDER (for index.html) ========= */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+  /* margin-top: 70px;  This is handled by .main-content padding-top now, remove if causing double padding */
+}
+
+.hero-slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.hero-slider .slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7); /* Applied directly to image for better control */
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Moved from a duplicated rule */
+  max-width: 600px; /* Max width for readability */
+  z-index: 2;
+  animation: fadeUp 1s ease-out; /* Ensured animation is here */
+}
+
+.hero-content h1 {
+  font-size: 3.5rem; /* Consistent size */
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.hero-content p {
+  font-size: 1.5rem; /* Consistent size */
+  margin-bottom: 1.5rem;
+}
+
+.shop-btn {
+  padding: 12px 32px;
+  font-size: 1rem;
+  border: none;
+  background-color: #fff;
+  color: #111;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+  background-color: #111;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Slider controls */
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 5;
+  transform: translateY(-50%);
+}
+
+.slider-controls span {
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(0,0,0,0.4);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.slider-controls span:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+/* ========= PAGE HEADER (for category pages like men.html) ========= */
+.page-header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem; /* Added margin to separate from products/filters */
+}
+
+.page-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Filters/Sort Section (if implemented) */
+.filters-sort {
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: flex-end; /* Align to right for typical filters */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.filter-group, .sort-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.filters-sort span {
+    font-weight: 600;
+    color: #333;
+}
+.filters-sort select, .filters-sort button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.filters-sort button {
+    background-color: #000;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+.filters-sort button:hover {
+    background-color: #333;
+}
+
+
+/* ========= CATEGORIES (for index.html) ========= */
+.categories {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.categories h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px; /* Limit width */
+  margin: 0 auto; /* Center the grid */
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Added shadow */
+}
+
+.category-card:hover {
+  transform: scale(1.03);
+}
+
+.category-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  filter: brightness(0.85);
+  transition: filter 0.3s;
+}
+
+.category-card h3 {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #fff;
+  font-size: 1.4rem;
+  z-index: 2;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Added for better readability */
+}
+
+/* ========= PRODUCTS (General Styling for product grids) ========= */
+.products {
+  padding: 60px 5%; /* Adjusted padding for general product sections */
+  background: #f9f9f9;
+  text-align: center;
+  flex-grow: 1; /* Allow this section to grow and push footer down */
+}
+
+.products h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Consistent minmax */
+  gap: 24px; /* Consistent gap */
+  padding: 0; /* Remove redundant padding if parent has it */
+  max-width: 1300px; /* Optional: constrain max width */
+  margin: 0 auto; /* Center the grid */
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 12px; /* Consistent border-radius */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ensure both transition */
+  text-align: center; /* Center content within card */
+
+  /* Explicitly define dimensions or flex behavior to ensure visibility */
+  display: flex;
+  flex-direction: column; /* Stack image and info vertically */
+  min-height: 400px; /* Ensure cards have enough height */
+}
+
+.product-card:hover {
+  transform: translateY(-8px); /* More pronounced lift */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+  width: 100%;
+  height: 280px; /* Fixed height for images, ensuring consistency */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+.product-card .product-info {
+  padding: 15px; /* Consistent padding */
+  display: flex; /* Make info a flex container */
+  flex-direction: column; /* Stack text info */
+  flex-grow: 1; /* Allow product info to take available space */
+  justify-content: space-between; /* Push button to bottom if content varies */
+}
+
+.product-info .product-title {
+  font-size: 1.2rem; /* Consistent font size for titles */
+  margin: 8px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-info .description {
+  font-size: 0.95rem; /* Better readability */
+  color: #666; /* Slightly darker for better contrast */
+  margin-bottom: 10px;
+  line-height: 1.4;
+  flex-grow: 1; /* Allow description to take space */
+}
+
+.product-info .price {
+  font-size: 1.15rem; /* Slightly larger price */
+  font-weight: bold;
+  color: #000;
+  margin: 10px 0;
+}
+
+/* Add to Cart Button visibility on hover */
+.product-info button {
+  padding: 10px 20px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 30px; /* Rounded button */
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(10px); /* Initially slightly down */
+  margin-top: 10px; /* Space from price */
+}
+
+.product-card:hover .product-info button {
+  opacity: 1; /* Visible on hover */
+  transform: translateY(0); /* Slides up on hover */
+}
+
+
+/* Popup style for Add to Cart notification */
+#popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #111;
+  color: white;
+  padding: 14px 22px; /* Slightly more padding */
+  border-radius: 8px;
+  font-size: 0.95rem;
+  z-index: 10000; /* Higher z-index to ensure it's on top */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25); /* Stronger shadow */
+  opacity: 0;
+  pointer-events: none; /* Allows clicks through when hidden */
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+}
+#popup.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* Re-enable pointer events when visible */
+}
+
+
+/* ======== MODERN FOOTER ======== */
+.ck-footer {
+  background: #000;
+  color: #fff;
+  padding: 3rem 2rem 2rem;
+  font-size: 0.95rem;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 2rem;
+  max-width: 1200px; /* Constrain footer width */
+  margin: 0 auto; /* Center footer columns */
+}
+
+.ck-footer h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.ck-footer ul {
+  list-style: none;
+}
+
+.ck-footer ul li {
+  margin: 0.5rem 0;
+}
+
+.ck-footer ul li a {
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.ck-footer ul li a:hover {
+  color: #fff;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.subscribe-form input {
+  padding: 0.7rem;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+.subscribe-form button {
+  padding: 0.7rem;
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.subscribe-form button:hover {
+  background: #222;
+  color: #fff;
+}
+
+.mobile-signup {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.mobile-signup a {
+  color: #fff;
+}
+
+.social-icons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons a {
+  color: #ccc;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.footer-bottom a {
+  color: #bbb;
+  margin: 0 0.3rem;
+  transition: color 0.3s;
+}
+
+.footer-bottom a:hover {
+  color: #fff;
+}
+
+/* ========= ANIMATIONS ========= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.invisible {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========= RESPONSIVE DESIGN ========= */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 1rem 1.5rem; /* Reduce padding on medium screens */
+  }
+  .nav-center {
+    gap: 1rem; /* Reduce gap */
+  }
+  .nav-links {
+    gap: 1rem;
+  }
+  .search-bar input {
+    width: 150px; /* Smaller search bar */
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  .hero-content p {
+    font-size: 1.3rem;
+  }
+  .page-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar elements */
+    align-items: flex-start;
+    padding: 1rem;
+    position: relative; /* Make it relative for mobile, or add more top padding to content */
+    height: auto;
+  }
+  .nav-center {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    gap: 1.2rem; /* Adjusted */
+  }
+  .search-bar {
+    width: 80%; /* Make search bar wider on mobile */
+    margin: 0 auto; /* Center search bar */
+  }
+  .nav-icons, .user-info {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .user-info {
+    margin-left: 0;
+  }
+  .modal-content {
+    margin: 10% auto; /* Adjust modal position for smaller screens */
+  }
+
+  .hero-slider {
+    height: 70vh; /* Shorter hero on mobile */
+  }
+  .hero-content {
+    left: 5%; /* Adjust content position */
+    right: 5%;
+    max-width: none; /* Allow full width */
+    text-align: center; /* Center text */
+    transform: translateY(-50%) translateX(0%); /* Adjust transform */
+  }
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .shop-btn {
+    padding: 0.7rem 1.8rem;
+  }
+  .slider-controls {
+    padding: 0 1rem; /* Smaller padding for controls */
+  }
+  .category-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller cards */
+  }
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller cards */
+    gap: 15px; /* Smaller gap */
+  }
+  .product-card {
+    min-height: 350px; /* Adjusted min-height */
+  }
+  .product-card img {
+      height: 200px; /* Smaller image height */
+  }
+  .ck-footer {
+    padding: 2rem 1rem;
+  }
+  .footer-columns {
+    grid-template-columns: 1fr; /* Stack columns */
+    text-align: center;
+  }
+  .subscribe-form {
+    align-items: center; /* Center form elements */
+  }
+  .social-icons {
+    justify-content: center; /* Center social icons */
+  }
+  .main-content {
+    padding-top: 200px; /* Adjusted significantly due to stacked navbar on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem;
+    }
+    .logo {
+        height: 60px;
+    }
+    .logo img {
+        max-height: 60px;
+    }
+    .nav-links {
+        gap: 0.8rem;
+        font-size: 0.9rem;
+    }
+    .search-bar {
+        height: 35px;
+        width: 90%;
+    }
+    .search-bar input {
+        padding: 0 0.8rem;
+    }
+    .search-bar button {
+        padding: 0 0.8rem;
+    }
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    .user-name {
+        font-size: 0.9rem;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    .shop-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    .page-header p {
+        font-size: 0.85rem;
+    }
+    .product-info h3 {
+        font-size: 1rem;
+    }
+    .product-info .price {
+        font-size: 1rem;
+    }
+    .product-info button {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+    .main-content {
+      padding-top: 150px; /* Further adjustment for very small screens */
+    }
+}
+/* style.css additions for Rating and Delivery in product cards */
+
+.product-info .rating {
+    color: #FFD700; /* Gold color for stars */
+    font-size: 1rem;
+    margin: 8px 0;
+    display: flex; /* Make stars align horizontally */
+    justify-content: center; /* Center stars */
+    align-items: center;
+    gap: 2px; /* Small gap between stars */
+}
+
+.product-info .rating i {
+    font-size: 1.1em; /* Slightly larger star icons */
+    vertical-align: middle; /* Align icons with text */
+}
+
+.product-info .rating span {
+    font-size: 0.9em; /* Smaller text for numerical rating */
+    color: #555; /* Darker color for readability */
+    margin-left: 5px;
+}
+
+.product-info .delivery {
+    font-size: 0.85rem;
+    color: #2ecc71; /* Green color for delivery info */
+    margin-top: 5px; /* Space from price */
+    margin-bottom: 15px; /* Space before button */
+    font-weight: 500;
+}
+/* style.css - Ensure these sections are present and correct */
+
+/* ========= PAGE HEADER (for category pages like men.html, women.html) ========= */
+.page-header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Filters/Sort Section */
+.filters-sort {
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: flex-end; /* Align to right for typical filters */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.filter-group, .sort-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.filters-sort span {
+    font-weight: 600;
+    color: #333;
+}
+.filters-sort select, .filters-sort button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.filters-sort button {
+    background-color: #000;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+.filters-sort button:hover {
+    background-color: #333;
+}
+/* style.css Additions for Cart Count */
+
+.cart-icon {
+    position: relative;
+    display: flex; /* To align the cart icon and count */
+    align-items: center;
+    font-size: 1.5rem; /* Adjust if your cart emoji is small */
+    padding-right: 5px; /* Space between emoji and count */
+}
+
+#cartItemCount {
+    font-size: 0.8rem; /* Smaller font size for the count */
+    font-weight: 600;
+    color: #fff; /* White text */
+    background-color: #e91e63; /* Pink/red background for visibility */
+    border-radius: 50%; /* Make it a circle */
+    padding: 3px 7px; /* Adjust padding to make it a neat circle/oval */
+    line-height: 1; /* Center text vertically */
+    min-width: 20px; /* Minimum width to ensure circle shape for single digit */
+    text-align: center;
+    position: absolute; /* Position it over the cart icon */
+    top: -8px; /* Adjust vertical position */
+    right: -10px; /* Adjust horizontal position */
+    transform: translate(50%, -50%); /* Fine-tune positioning relative to itself */
+    display: flex; /* For internal centering */
+    justify-content: center; /* For internal centering */
+    align-items: center; /* For internal centering */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Subtle shadow */
+}
+
+/* Hide the count bubble if there are no items (handled by JS, but good to have a rule) */
+#cartItemCount:empty {
+    display: none;
+}
+
+/* Optional: Add a bounce animation when item count changes */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translate(50%, -50%) translateY(0);
+  }
+  40% {
+    transform: translate(50%, -50%) translateY(-5px);
+  }
+  60% {
+    transform: translate(50%, -50%) translateY(-2px);
+  }
+}
+
+#cartItemCount.has-items {
+    animation: bounce 0.6s ease-in-out; /* Apply bounce when it gets items */
+} 
+/* style.css Additions for Cart Page */
+
+.cart-section {
+    display: flex;
+    gap: 30px;
+    padding: 30px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.cart-items-container {
+    flex: 2; /* Takes 2/3 of the space */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 50px 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    opacity: 1; /* Default visible state for cart items */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* For removal animation */
+    transform: translateX(0);
+}
+
+.cart-item.removing {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.item-details {
+    flex-grow: 1; /* Takes available space */
+}
+
+.item-details h3 {
+    font-size: 1.15rem;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 600;
+}
+
+.item-details p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.item-details .item-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #111;
+    margin-top: 8px;
+}
+
+.item-quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    flex-shrink: 0; /* Prevent from shrinking */
+}
+
+.item-quantity-control button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.item-quantity-control button:hover {
+    background-color: #e0e0e0;
+}
+
+.item-quantity-control input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 0;
+    font-size: 1rem;
+    -moz-appearance: textfield; /* Hide arrows for Firefox */
+    flex-shrink: 0;
+}
+
+/* Hide arrows for Chrome, Safari, Edge, Opera */
+.item-quantity-control input::-webkit-outer-spin-button,
+.item-quantity-control input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.item-remove-btn {
+    background: none;
+    border: none;
+    color: #dc3545; /* Red color for remove */
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 15px; /* Space from quantity control */
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+
+.item-remove-btn:hover {
+    color: #c82333;
+}
+
+.cart-summary-card {
+    flex: 1; /* Takes 1/3 of the space */
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    position: sticky; /* Makes it stick while scrolling */
+    top: 130px; /* Adjust based on navbar height + desired offset */
+}
+
+.cart-summary-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #111;
+    text-align: center;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.summary-line.total-line {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #000;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.checkout-btn:hover {
+    background-color: #333;
+}
+
+/* Responsive adjustments for Cart Page */
+@media (max-width: 992px) {
+    .cart-section {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center when stacked */
+    }
+    .cart-items-container, .cart-summary-card {
+        width: 100%; /* Take full width */
+        max-width: 700px; /* Limit width for readability */
+    }
+    .cart-summary-card {
+        position: static; /* Remove sticky on mobile */
+        margin-top: 30px; /* Space between items and summary */
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column; /* Stack details vertically */
+        align-items: flex-start;
+        text-align: center; /* Center align when stacked */
+    }
+    .cart-item img {
+        margin-bottom: 10px;
+    }
+    .item-details {
+        text-align: center; /* Center align text details */
+    }
+    .item-quantity-control {
+        width: 100%;
+        justify-content: center; /* Center quantity controls */
+        margin-bottom: 15px;
+    }
+    .item-remove-btn {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 10px; /* Add top margin */
+        align-self: center;
+    }
+}
+/* style.css Additions for Checkout Page */
+
+.checkout-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.checkout-steps-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.step-indicator {
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1; /* Equal width */
+    text-align: center;
+    margin: 0 5px;
+}
+
+.step-indicator.active {
+    background-color: #000;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.checkout-step {
+    display: none; /* Hidden by default, JS manages visibility */
+    flex-direction: column; /* For form content layout */
+}
+
+.checkout-step.active {
+    display: flex; /* Show the active step */
+}
+
+.checkout-step h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #111;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-group.row-group {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group.row-group .col {
+    flex: 1;
+}
+
+.payment-method-details {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+    background-color: #f8f8f8;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.prev-step-btn, .next-step-btn, .checkout-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.prev-step-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.prev-step-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.next-step-btn {
+    background-color: #000;
+    color: #fff;
+}
+
+.next-step-btn:hover {
+    background-color: #333;
+}
+
+#placeOrderBtn {
+    background-color: #28a745; /* Green for place order */
+}
+#placeOrderBtn:hover {
+    background-color: #218838;
+}
+
+/* Order Review / Confirmation Styles */
+.order-summary-details {
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.order-summary-details h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #111;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+.order-summary-details p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.review-items-list .review-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #f0f0f0;
+}
+.review-items-list .review-item:last-child {
+    border-bottom: none;
+}
+.review-items-list .review-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.review-item-info {
+    flex-grow: 1;
+}
+.review-item-info h4 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 3px;
+}
+.review-item-info p {
+    font-size: 0.85rem;
+    color: #777;
+}
+.review-item-price {
+    font-weight: 600;
+    color: #000;
+}
+
+
+.coupon-section {
+    padding: 15px;
+    background-color: #e6f7ff; /* Light blue background */
+    border: 1px solid #91d5ff; /* Blue border */
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.coupon-section label {
+    font-weight: 600;
+    color: #1890ff;
+    display: block;
+    margin-bottom: 10px;
+}
+.coupon-input-group {
+    display: flex;
+    gap: 10px;
+}
+.coupon-input-group input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.coupon-input-group button {
+    padding: 8px 15px;
+    background-color: #1890ff; /* Blue button */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.coupon-input-group button:hover {
+    background-color: #096dd9;
+}
+#couponMessage {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: 500;
+}
+#couponMessage.success {
+    color: #28a745; /* Green */
+}
+#couponMessage.error {
+    color: #dc3545; /* Red */
+}
+
+
+.final-price-summary {
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.final-price-summary .summary-line {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.final-price-summary .total-line {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Confirmation Step Styling */
+#confirmationStep {
+    text-align: center;
+    padding: 50px 20px;
+}
+.confirmation-icon {
+    font-size: 5rem;
+    color: #28a745; /* Green checkmark */
+    margin-bottom: 20px;
+    animation: scaleIn 0.5s ease-out;
+}
+@keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.confirmation-content h2 {
+    color: #28a745;
+    margin-bottom: 15px;
+}
+.confirmation-content p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #444;
+}
+.confirmation-details {
+    text-align: left;
+    margin: 30px auto;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+.confirmation-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #111;
+}
+.confirmation-details p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+.confirmation-details p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Responsive adjustments for Checkout Page */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    .checkout-steps-nav {
+        flex-wrap: wrap; /* Allow steps to wrap */
+        gap: 10px;
+    }
+    .step-indicator {
+        flex-basis: 48%; /* Two columns on smaller screens */
+    }
+    .form-group.row-group {
+        flex-direction: column; /* Stack columns */
+        gap: 0;
+    }
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .prev-step-btn, .next-step-btn, #placeOrderBtn {
+        width: 100%;
+    }
+}
+/* style.css Additions for Delivery Animation */
+
+.delivery-animation-container {
+    margin: 40px auto;
+    width: 100%;
+    max-width: 500px; /* Limit width for animation */
+    position: relative;
+    padding-bottom: 20px; /* Space for status text below */
+    overflow: hidden; /* Hide bus when off road */
+}
+
+.road {
+    width: 100%;
+    height: 10px; /* Road thickness */
+    background-color: #333; /* Dark road color */
+    position: relative;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.road .center-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: repeating-linear-gradient(to right, #fff 0, #fff 10px, transparent 10px, transparent 20px);
+    transform: translateY(-50%);
+}
+
+.bus-icon {
+    font-size: 3rem; /* Size of the bus icon */
+    position: absolute;
+    top: -30px; /* Position above the road */
+    left: -100px; /* Start off-screen to the left */
+    transform: translateY(-50%);
+    z-index: 2;
+    animation: driveBus 8s linear forwards; /* Animation: 8s duration, linear, fill mode */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.delivery-status-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #4CAF50; /* Green for "on the way" */
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+@keyframes driveBus {
+    0% {
+        left: -100px; /* Start off-screen left */
+    }
+    100% {
+        left: calc(100% + 100px); /* End off-screen right (100% of container + bus width) */
+    }
+}
